@@ -16,14 +16,14 @@
     opacity: 0;
     &.expand {
       cursor: pointer;
-      animation: slide 0.5s ease-in 1s;
+      animation: slide 0.3s ease-in 1s;
       animation-fill-mode: forwards;
     }
   }
   table {
     opacity: 0;
     width: 100%;
-    // text-align: center;
+    text-align: center;
     font-size: 14px;
     padding: 10px;
     caption {

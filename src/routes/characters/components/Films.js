@@ -1,5 +1,6 @@
 import Arrow from './Arrow'
 import { connect } from 'react-redux'
+import moment from 'moment'
 import React, { Component } from 'react'
 import '../styles/films.scss'
 
@@ -40,7 +41,6 @@ class Films extends Component {
         <tr>
           <th>Title</th>
           <th>Director</th> 
-          <th>Producer</th>
           <th>Release</th>
         </tr>
         </thead>
@@ -48,8 +48,7 @@ class Films extends Component {
           {currentFilms.map((film, i) => <tr key={i.toString()}>
             <td>{film.title}</td>
             <td>{film.director}</td>
-            <td>{film.producer}</td>
-            <td>{film.release_date}</td>
+            <td>{moment(film.release_date).format('dddd, MMMM MM YYYY')}</td>
           </tr>)}
         </tbody>
       </table>
