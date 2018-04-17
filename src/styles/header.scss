@@ -1,0 +1,45 @@
+$nav-bottom-border-before: rgba(147, 141, 144, 0);
+$nav-bottom-border-after: rgba(147, 141, 144, 10);
+
+.header {
+  position: relative;
+  height: 80px;
+  border-bottom: 1px solid $nav-bottom-border-before;
+  background-color: rgba(0, 0, 0, 0);
+  transition: all 2s;
+  transition-delay: 14s;
+  &.animate {
+    background-color: rgba(0, 0, 0, 1);
+    border-bottom: 1px solid $nav-bottom-border-after;
+  }
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    .content {
+      flex: 1;
+      height: 100%;
+      &.mid {
+        flex: 2;
+        padding: 8px;
+        position: relative;
+        height: 80px;
+        svg {
+          width: 2500px;
+          position: absolute;
+          z-index: 40;
+          left: calc(50% - 1250px);
+          top: 7px;
+          transition: all 15s ease-out;
+          &.animate {
+            width: 150px;
+            left: calc(50% - 75px);
+            top: 7px;
+          }
+        }
+      }
+    } 
+  }
+}

@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Gugi');
+
+html {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  color: #F9A929;
+  font-family: 'Gugi', cursive;
+  background: #000 url('http://www.script-tutorials.com/demos/360/images/stars.png') repeat top center;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
