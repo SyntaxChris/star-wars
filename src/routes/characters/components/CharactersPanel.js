@@ -4,7 +4,6 @@ import Films from './Films'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import TableLoader from './TableLoader'
-import { Route } from 'react-router-dom'
 import '../styles/characters.scss'
 
 const CharactersPanel = ({
@@ -13,8 +12,7 @@ const CharactersPanel = ({
   currentCharacter,
   error,
   fetchCharacter,
-  fetchingFilms,
-  history
+  fetchingFilms
 }) => <section className='characters-panel'> 
   {fetchingFilms ? <TableLoader /> : null}
   {characters.map((character, i) => <Character
@@ -22,7 +20,6 @@ const CharactersPanel = ({
     character={character}
     currentCharacter={currentCharacter}
     fetchCharacter={fetchCharacter}
-    history={history}
   />)}
   <Films />
   {error.message

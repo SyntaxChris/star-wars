@@ -40,6 +40,8 @@ class Films extends Component {
       currentFilms,
       fetchingFilms
     } = this.props
+    const orderedFilms = currentFilms
+      .sort((a, b) => moment(a.release_date) - moment(b.release_date))
 
     return <article className={`films${this.state.expand ? ' expand' : ''}`}>
       {fetchingFilms
@@ -61,7 +63,7 @@ class Films extends Component {
             </tr>
             </thead>
             <tbody>
-              {currentFilms.map((film, i) => <tr key={i.toString()}>
+              {orderedFilms.map((film, i) => <tr key={i.toString()}>
                 <td>{film.title}</td>
                 <td>{film.director}</td>
                 <td>{moment(film.release_date).format('dddd, MMMM MM YYYY')}</td>
