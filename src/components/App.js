@@ -12,8 +12,8 @@ const store = configureStore()
 // top level routes
 const AppRoutes = () => <BrowserRouter>
   <Switch>
-    <Route path='/characters' component={CharactersRoute} />
-    <Route path='*' component={CharactersRoute} />
+    <Route path='/' component={CharactersRoute} />
+    {/*<Route path='*' component={CharactersRoute} />*/}
   </Switch>
 </BrowserRouter>
 

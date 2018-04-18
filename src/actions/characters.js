@@ -17,7 +17,7 @@ const FAILURE = 'FAILURE'
 export const addCharacterToUrl = (charName, history) => {
   const urlifiedName = charName.toLowerCase().split(' ').join('-')
 
-  return history.push(`/characters/${urlifiedName}/films`)
+  return history.push(`/${urlifiedName}/films`)
 }
 
 export const clearCharacter = () => ({

@@ -12,17 +12,14 @@ const CharactersPanel = ({
   error,
   fetchCharacter,
   history
-}) => <Route
-  path='/characters'
-  render={() => <Characters
-    clearError={clearError}
-    characters={characters}
-    currentCharacter={currentCharacter}
-    currentFilms={currentFilms}
-    error={error}
-    fetchCharacter={fetchCharacter}
-    history={history}
-  />}
+}) => <Characters
+  clearError={clearError}
+  characters={characters}
+  currentCharacter={currentCharacter}
+  currentFilms={currentFilms}
+  error={error}
+  fetchCharacter={fetchCharacter}
+  history={history}
 />
 
 CharactersPanel.propTypes = {
