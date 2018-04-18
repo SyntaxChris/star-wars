@@ -3,6 +3,7 @@ const config = {
   devServer: {
     historyApiFallback: true
   },
+  entry: [ './index.js' ],
   plugins: [],
   module: {
     rules: []
