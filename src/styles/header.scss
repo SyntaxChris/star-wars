@@ -32,7 +32,6 @@ $nav-bottom-border-after: rgba(147, 141, 144, 10);
           position: absolute;
           z-index: 40;
           left: calc(50% - 1250px);
-          margin-top: 7px;
           transition: all 15s ease-out;
           &.animate {
             width: 150px;
