@@ -1,9 +1,10 @@
+const webpack = require('webpack')
 const path = require('path')
 const config = {
   devServer: {
     historyApiFallback: true,
     inline: true,
-    port: process.env.PORT || 5000
+    port: 5000
   },
   entry: './src/index.js',
   plugins: [],
@@ -14,6 +15,17 @@ const config = {
     extensions: [ '*', '.js', '.jsx', '.json', '.scss' ]
   }
 }
+
+// Optimizations
+// ------------------------------------
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+
+config.plugins.push(
+  new webpack.DefinePlugin({
+    'process.env': { NODE_ENV: JSON.stringify('production') }
+  }),
+  new UglifyJsPlugin()
+)
 
 // Bundle Output
 // ------------------------------------
