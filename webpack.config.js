@@ -1,9 +1,10 @@
 const path = require('path')
 const config = {
   devServer: {
-    historyApiFallback: true
+    historyApiFallback: true,
+    inline: true,
+    port: process.env.PORT || 5000
   },
-  entry: [ './index.js' ],
   plugins: [],
   module: {
     rules: []
