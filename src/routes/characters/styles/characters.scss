@@ -21,7 +21,7 @@
     flex-direction: row;
     flex-flow: row wrap;
     transform-origin: 50% 100%;
-    animation: crawl 15s linear;
+    animation: crawl 17s linear;
     animation-fill-mode: forwards;
     .characters {
       dislay: none;
@@ -88,6 +88,10 @@
         height: 40px;
         text-align: center;
         font-size: 20px;
+        opacity: 0;
+        animation: fade-in 0.8s ease-out;
+        animation-fill-mode: forwards;
+        animation-delay: 17s;
       }
     }
   }
@@ -103,13 +107,22 @@
   }
 }
 
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 @keyframes crawl {
   0% {
-    top: 1000px;
+    top: 1200px;
     transform: rotateX(60deg) translateZ(600px);
   }
-  80% {
-    transform: rotateX(50deg) translateZ(100px);
+  95% {
+    transform: rotateX(50deg);
   }
   100% {
     top: 0px;
