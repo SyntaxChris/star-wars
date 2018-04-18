@@ -1,6 +1,5 @@
 const express = require('express')
 const https = require("http")
-const moment = require('moment')
 const path = require('path')
 const app = express()
 
@@ -12,7 +11,7 @@ const server = app.listen(app.get('port'), function() {
 })
 
 function keepAwake () {
-  console.log(`------ keep awake ------ ${moment().tz('America/New_York').format("h:mm:ss a")}`);
+  console.log('------ keep awake ------');
   return https.get(process.env.APP_URL);
 }
 
