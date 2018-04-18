@@ -106,7 +106,10 @@
 @keyframes crawl {
   0% {
     top: 1000px;
-    transform: rotateX(60deg) translateZ(400px);
+    transform: rotateX(60deg) translateZ(600px);
+  }
+  80% {
+    transform: rotateX(50deg) translateZ(100px);
   }
   100% {
     top: 0px;
