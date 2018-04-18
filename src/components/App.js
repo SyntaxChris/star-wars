@@ -13,7 +13,7 @@ const store = configureStore()
 const AppRoutes = () => <BrowserRouter>
   <Switch>
     <Route path='/characters' component={CharactersRoute} />
-    <Redirect to='/characters' />
+    <Route path='*' component={CharactersRoute} />
   </Switch>
 </BrowserRouter>
 
