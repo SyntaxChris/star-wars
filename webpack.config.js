@@ -3,7 +3,6 @@ const path = require('path')
 const config = {
   devServer: {
     historyApiFallback: true,
-    inline: true,
     port: 5000
   },
   entry: './src/index.js',
@@ -18,14 +17,16 @@ const config = {
 
 // Optimizations
 // ------------------------------------
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+if (process.env.NODE_ENV === 'production') {
+  const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
-config.plugins.push(
-  new webpack.DefinePlugin({
-    'process.env': { NODE_ENV: JSON.stringify('production') }
-  }),
-  new UglifyJsPlugin()
-)
+  config.plugins.push(
+    new webpack.DefinePlugin({
+      'process.env': { NODE_ENV: JSON.stringify('production') }
+    }),
+    new UglifyJsPlugin()
+  ) 
+}
 
 // Bundle Output
 // ------------------------------------

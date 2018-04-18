@@ -36,6 +36,9 @@ export const clearFilms = () => ({
 })
 
 export const fetchCharacter = (url, history) => (dispatch) => {
+  // show table loader
+  dispatch(fetchingFilms(true))
+  // fetch character url
   return dispatch({
     [CALL_API] : {
       endpoint : url,
@@ -48,9 +51,7 @@ export const fetchCharacter = (url, history) => (dispatch) => {
       addCharacterToUrl(res.payload.name, history)
       // clear last characters films
       dispatch(clearFilms())
-      // show table loader
-      dispatch(fetchingFilms(true))
-
+      
       return res.payload.films
     }
   }).then((films) => {
@@ -75,5 +76,5 @@ export const fetchFilms = (filmUrls, dispatch) => {
   }))
 
   return Promise.all(filmsToFetch)
-    // .then(() => dispatch(fetchingFilms(false)))
+    .then(() => dispatch(fetchingFilms(false))) // hide table loader after all films are fetched
 }

@@ -58,9 +58,10 @@ function charactersReducer(state = initialState, action) {
         currentFilms: []
       }
     case FETCH_CHARACTER:
+      const { films, name, url } = action.payload 
       return { 
         ...state,
-        currentCharacter: action.payload
+        currentCharacter: { films, name, url }
       }
     case FETCHING_FILMS:
       return {
@@ -71,10 +72,12 @@ function charactersReducer(state = initialState, action) {
       return {
         ...state,
         currentCharacter: {},
+        currentFilms: [],
         error: {
           message: action.payload.message,
           detail: action.payload.response.detail
-        }
+        },
+        fetchingFilms: false
       }
     default:
       return state

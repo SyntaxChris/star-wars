@@ -2,6 +2,7 @@ import ErrorModal from './ErrorModal'
 import Films from './Films'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import TableLoader from './TableLoader'
 import { Route } from 'react-router-dom'
 import '../styles/characters.scss'
 
@@ -22,12 +23,13 @@ const Character = ({
 const Characters = ({
   clearError,
   characters,
-  error,
   currentCharacter,
-  currentFilms,
+  error,
   fetchCharacter,
+  fetchingFilms,
   history
 }) => <section className='characters-panel'> 
+  {fetchingFilms ? <TableLoader /> : null}
   {characters.map((character, i) => <Character
     key={i.toString()}
     character={character}
@@ -35,6 +37,7 @@ const Characters = ({
     fetchCharacter={fetchCharacter}
     history={history}
   />)}
+  <Films />
   {error.message
     ? <ErrorModal
       clearError={clearError}
@@ -42,10 +45,6 @@ const Characters = ({
       message={error.message}
     />
     : null}
-  <Route 
-    path='/characters/:name/films'
-    component={Films}
-  />
 </section>
 
 Characters.propTypes = {

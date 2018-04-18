@@ -10,7 +10,8 @@ const mapStateToProps = state => ({
   characters: state.characters.items,
   currentCharacter: state.characters.currentCharacter,
   currentFilms: state.characters.currentFilms,
-  error: state.characters.error
+  error: state.characters.error,
+  fetchingFilms: state.characters.fetchingFilms
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CharactersPanel))

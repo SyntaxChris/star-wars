@@ -16,7 +16,9 @@ function configureStore () {
 
   return createStore(
     rootReducer,
-    composeEnhancers(applyMiddleware(...middleware))
+    composeEnhancers(
+      applyMiddleware(...middleware)
+    )
   )
 }
 

@@ -1,20 +1,27 @@
 import Arrow from './Arrow'
 import clearError from '../../../actions/characters'
-import { connect } from 'react-redux'
 import moment from 'moment'
+import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import '../styles/films.scss'
 
 class Films extends Component {
+  static propTypes = {
+    currentCharacter: PropTypes.object,
+    currentFilms: PropTypes.array,
+    fetchingFilms: PropTypes.bool.isRequired
+  }
+
   constructor (props) {
     super(props)
     this.state = {
-      expand: !!this.props.currentCharacter.name
+      expand: !!this.props.currentCharacter.name && !this.props.fetchingFilms
     }
   }
 
   componentWillReceiveProps (nextProps) {
-    if (nextProps.currentCharacter.name) {
+    if (nextProps.currentCharacter.name || nextProps.fetchingFilms) {
       this.setState({ expand: true })
     }
   }
@@ -26,40 +33,46 @@ class Films extends Component {
   render () {
     const {
       currentCharacter,
-      currentFilms
+      currentFilms,
+      fetchingFilms
     } = this.props
 
     return <article className={`films${this.state.expand ? ' expand' : ''}`}>
-      <div
-        className={`close-btn${this.state.expand ? ' expand' : ''}`}
-        onClick={() => this.handleExpandTable(false)}
-      >
-        <Arrow />
-      </div>
-      <table>
-        <caption>Film Appearances</caption>
-        <thead>
-        <tr>
-          <th>Title</th>
-          <th>Director</th> 
-          <th>Release</th>
-        </tr>
-        </thead>
-        <tbody>
-          {currentFilms.map((film, i) => <tr key={i.toString()}>
-            <td>{film.title}</td>
-            <td>{film.director}</td>
-            <td>{moment(film.release_date).format('dddd, MMMM MM YYYY')}</td>
-          </tr>)}
-        </tbody>
-      </table>
+      {fetchingFilms
+        ? null
+        : <div>
+          <div
+            className={`close-btn${this.state.expand ? ' expand' : ''}`}
+            onClick={() => this.handleExpandTable(false)}
+          >
+            <Arrow />
+          </div>
+          <table>
+            <caption>Film Appearances</caption>
+            <thead>
+            <tr>
+              <th>Title</th>
+              <th>Director</th> 
+              <th>Release</th>
+            </tr>
+            </thead>
+            <tbody>
+              {currentFilms.map((film, i) => <tr key={i.toString()}>
+                <td>{film.title}</td>
+                <td>{film.director}</td>
+                <td>{moment(film.release_date).format('dddd, MMMM MM YYYY')}</td>
+              </tr>)}
+            </tbody>
+          </table>
+        </div>}
     </article>
   }
 }
 
 const mapStateToProps = state => ({
   currentCharacter: state.characters.currentCharacter,
-  currentFilms: state.characters.currentFilms
+  currentFilms: state.characters.currentFilms,
+  fetchingFilms: state.characters.fetchingFilms
 })
 
 const mapDispatchToProps = {}
