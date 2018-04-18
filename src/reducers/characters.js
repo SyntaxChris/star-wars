@@ -5,7 +5,8 @@ import {
   CLEAR_FILMS,
   FETCH_CHARACTER,
   FETCHING_FILMS,
-  HANDLE_FETCH_CHARACTER_FAILURE
+  HANDLE_FETCH_ERROR,
+  REQUEST
 } from '../actions/types'
 
 const initialState = {
@@ -68,7 +69,7 @@ function charactersReducer(state = initialState, action) {
         ...state,
         fetchingFilms: action.payload
       }
-    case HANDLE_FETCH_CHARACTER_FAILURE:
+    case HANDLE_FETCH_ERROR:
       return {
         ...state,
         currentCharacter: {},
@@ -79,6 +80,8 @@ function charactersReducer(state = initialState, action) {
         },
         fetchingFilms: false
       }
+    case REQUEST:
+      return state
     default:
       return state
   }

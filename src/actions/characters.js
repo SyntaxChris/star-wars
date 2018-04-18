@@ -7,12 +7,9 @@ import {
   CLEAR_FILMS,
   FETCH_CHARACTER,
   FETCHING_FILMS,
-  HANDLE_FETCH_CHARACTER_FAILURE,
-  START_ANIMATION
+  HANDLE_FETCH_ERROR,
+  REQUEST
 } from './types'
-
-const REQUEST = 'REQUEST'
-const FAILURE = 'FAILURE'
 
 export const clearCharacter = () => ({
   type: CLEAR_CHARACTER,
@@ -37,7 +34,7 @@ export const fetchCharacter = url => dispatch => {
     [CALL_API] : {
       endpoint : url,
       method   : 'GET',
-      types    : [REQUEST, FETCH_CHARACTER, HANDLE_FETCH_CHARACTER_FAILURE]
+      types    : [REQUEST, FETCH_CHARACTER, HANDLE_FETCH_ERROR]
     }
   }).then((res) => {
     if (res.payload.name !== 'ApiError') {
@@ -63,7 +60,7 @@ export const fetchFilms = (filmUrls, dispatch) => {
     [CALL_API] : {
       endpoint : filmUrl,
       method   : 'GET',
-      types    : [REQUEST, ADD_FILM, FAILURE]
+      types    : [REQUEST, ADD_FILM, HANDLE_FETCH_ERROR]
     }
   }))
 
