@@ -42,7 +42,7 @@ class Films extends Component {
     } = this.props
 
     return <article className={`films${this.state.expand ? ' expand' : ''}`}>
-      {fetchingFilms || !currentCharacter.name
+      {fetchingFilms
         ? null
         : <div>
           <div
