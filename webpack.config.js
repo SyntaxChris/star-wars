@@ -5,6 +5,7 @@ const config = {
     inline: true,
     port: process.env.PORT || 5000
   },
+  entry: './src/index.js',
   plugins: [],
   module: {
     rules: []
@@ -53,27 +54,25 @@ config.plugins.push(new HtmlWebPackPlugin({
 // Styles
 // ------------------------------------
 const autoPrefixer = require('autoprefixer')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const extractStyles = new ExtractTextPlugin({
-  filename: 'styles/[name].[md5:contenthash:hex:20].css',
-  allChunks: true,
-  disable: process.env.NODE_ENV === 'development',
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const extractStyles = new MiniCssExtractPlugin({
+  filename: '[name].css',
+  chunkFilename: '[id].css'
 })
 
 config.module.rules.push({
   test: /\.(sass|scss)$/,
-  loader: extractStyles.extract({
-    fallback: 'style-loader',
-    use: [
-      {
-        loader: 'css-loader',
-        options: { autoprefixer: false, sourceMap: true, importLoaders: 1 }
-      },
-      { loader: 'postcss-loader'},
-      { loader: 'sass-loader' }
-    ],
-  })
+  use: [
+    MiniCssExtractPlugin.loader,
+    {
+      loader: 'css-loader',
+      options: { autoprefixer: false, sourceMap: true, importLoaders: 1 }
+    },
+    { loader: 'postcss-loader'},
+    { loader: 'sass-loader' }
+  ]
 })
+
 config.plugins.push(extractStyles, autoPrefixer)
 
 // Images
