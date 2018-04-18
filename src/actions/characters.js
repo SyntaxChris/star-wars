@@ -14,12 +14,6 @@ import {
 const REQUEST = 'REQUEST'
 const FAILURE = 'FAILURE'
 
-export const addCharacterToUrl = (charName, history) => {
-  const urlifiedName = charName.toLowerCase().split(' ').join('-')
-
-  return history.push(`/${urlifiedName}/films`)
-}
-
 export const clearCharacter = () => ({
   type: CLEAR_CHARACTER,
   payload: null
@@ -35,7 +29,7 @@ export const clearFilms = () => ({
   payload: null
 })
 
-export const fetchCharacter = (url, history) => (dispatch) => {
+export const fetchCharacter = url => dispatch => {
   // show table loader
   dispatch(fetchingFilms(true))
   // fetch character url
@@ -47,8 +41,6 @@ export const fetchCharacter = (url, history) => (dispatch) => {
     }
   }).then((res) => {
     if (res.payload.name !== 'ApiError') {
-      // add name to url if no error
-      addCharacterToUrl(res.payload.name, history)
       // clear last characters films
       dispatch(clearFilms())
       

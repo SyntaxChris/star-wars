@@ -32,6 +32,7 @@ class App extends Component {
   }
 
   componentWillMount () {
+    // initiate theme song
     this.state.sound.play()
   }
 
@@ -40,7 +41,7 @@ class App extends Component {
       this.setState({ animate: true })
     }, 500)
 
-    setTimeout(() => this.state.sound.fade(1.0, 0, 5000), 17000)
+    setTimeout(() => this.state.sound.fade(1.0, 0, 5000), 16000) // fade out theme song - you're welcome :)
   }
 
   render () {

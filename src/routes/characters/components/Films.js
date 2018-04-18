@@ -24,6 +24,10 @@ class Films extends Component {
     if (nextProps.currentCharacter.name || nextProps.fetchingFilms) {
       this.setState({ expand: true })
     }
+
+    if (!nextProps.currentCharacter.name) {
+      this.setState({ expand: false })
+    }
   }
 
   handleExpandTable (expand) {
@@ -38,7 +42,7 @@ class Films extends Component {
     } = this.props
 
     return <article className={`films${this.state.expand ? ' expand' : ''}`}>
-      {fetchingFilms
+      {fetchingFilms || !currentCharacter.name
         ? null
         : <div>
           <div
