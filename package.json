@@ -6,7 +6,7 @@
     "license": "MIT",
     "scripts": {
         "dev": "webpack-dev-server --mode development",
-        "start": "./node_modules/webpack/bin/webpack.js -p --progress && node server.js"
+        "start": "./node_modules/webpack/bin/webpack.js -p $PORT && node server.js"
     },
     "dependencies": {
         "babel-core": "^6.26.0",
