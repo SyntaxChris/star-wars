@@ -1,5 +1,5 @@
 const express = require('express')
-const https = require('http')
+const http = require('http')
 const path = require('path')
 const app = express()
 
@@ -12,7 +12,7 @@ const server = app.listen(app.get('port'), function() {
 
 function keepAwake () {
   console.log('------ keep awake ------');
-  return https.get(process.env.APP_URL);
+  return http.get(process.env.APP_URL);
 }
 
 setInterval(function() { keepAwake() }, 300000) // every 5 minutes (300000)
