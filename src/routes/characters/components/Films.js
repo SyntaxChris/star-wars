@@ -1,4 +1,5 @@
 import Arrow from './Arrow'
+import clearError from '../../../actions/characters'
 import { connect } from 'react-redux'
 import moment from 'moment'
 import React, { Component } from 'react'

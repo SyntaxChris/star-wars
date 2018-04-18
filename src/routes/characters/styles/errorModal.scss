@@ -1,0 +1,40 @@
+.error-modal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.8);
+  z-index: 50;
+  .title {
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: 30px;
+  }
+  .icon-container {
+    height: 60%;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    svg {
+      height: 100%;
+      marign-top: 20px;
+    }
+  }
+  .btn-container {
+    height: 20%;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    button {
+      padding: 7px 60px;
+      font-size: 25px;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      background-color: #F9A929;
+      font-family: 'Gugi', cursive;
+    }
+  }
+}

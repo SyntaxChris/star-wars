@@ -1,3 +1,4 @@
+import ErrorModal from './ErrorModal'
 import Films from './Films'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
@@ -5,6 +6,7 @@ import { Route } from 'react-router-dom'
 import '../styles/characters.scss'
 
 const Character = ({
+  clearError,
   character,
   currentCharacter,
   fetchCharacter,
@@ -18,7 +20,9 @@ const Character = ({
 </figure>
 
 const Characters = ({
+  clearError,
   characters,
+  error,
   currentCharacter,
   currentFilms,
   fetchCharacter,
@@ -31,6 +35,13 @@ const Characters = ({
     fetchCharacter={fetchCharacter}
     history={history}
   />)}
+  {error.message
+    ? <ErrorModal
+      clearError={clearError}
+      detail={error.detail}
+      message={error.message}
+    />
+    : null}
   <Route 
     path='/characters/:name/films'
     component={Films}

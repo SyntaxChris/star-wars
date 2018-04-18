@@ -5,17 +5,21 @@ import React, { Component } from 'react'
 import '../styles/characters.scss'
 
 const CharactersPanel = ({
+  clearError,
   characters,
   currentCharacter,
   currentFilms,
+  error,
   fetchCharacter,
   history
 }) => <Route
   path='/characters'
   render={() => <Characters
+    clearError={clearError}
     characters={characters}
     currentCharacter={currentCharacter}
     currentFilms={currentFilms}
+    error={error}
     fetchCharacter={fetchCharacter}
     history={history}
   />}

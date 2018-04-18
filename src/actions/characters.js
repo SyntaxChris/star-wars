@@ -3,8 +3,10 @@ import { CALL_API } from 'redux-api-middleware'
 import {
   ADD_FILM,
   CLEAR_CHARACTER,
+  CLEAR_ERROR,
   CLEAR_FILMS,
   FETCH_CHARACTER,
+  FETCHING_FILMS,
   HANDLE_FETCH_CHARACTER_FAILURE,
   START_ANIMATION
 } from './types'
@@ -23,7 +25,12 @@ export const clearCharacter = () => ({
   payload: null
 })
 
-export const clearFilms = dispatch => dispatch({
+export const clearError = () => ({
+  type: CLEAR_ERROR,
+  payload: null
+})
+
+export const clearFilms = () => ({
   type: CLEAR_FILMS,
   payload: null
 })
@@ -40,16 +47,21 @@ export const fetchCharacter = (url, history) => (dispatch) => {
       // add name to url if no error
       addCharacterToUrl(res.payload.name, history)
       // clear last characters films
-      clearFilms(dispatch)
+      dispatch(clearFilms())
+      // show table loader
+      dispatch(fetchingFilms(true))
 
       return res.payload.films
-    } else {
-      console.log(JSON.stringify(res.payload))
     }
   }).then((films) => {
     if (films) { fetchFilms(films, dispatch) }
   })
 }
+
+export const fetchingFilms = fetching => ({
+  type: FETCHING_FILMS,
+  payload: fetching
+})
 
 export const fetchFilms = (filmUrls, dispatch) => {  
   const filmsToFetch = []
@@ -63,4 +75,5 @@ export const fetchFilms = (filmUrls, dispatch) => {
   }))
 
   return Promise.all(filmsToFetch)
+    // .then(() => dispatch(fetchingFilms(false)))
 }

@@ -1,17 +1,24 @@
 import characters from '../../characters'
 import {
   ADD_FILM,
+  CLEAR_ERROR,
   CLEAR_FILMS,
   FETCH_CHARACTER,
+  FETCHING_FILMS,
   HANDLE_FETCH_CHARACTER_FAILURE
 } from '../actions/types'
 
 const initialState = {
-  items: JSON.parse(JSON.stringify(characters)).characters,
-  failedFetch: false,
   animate: false,
   currentCharacter: {},
-  currentFilms: []
+  currentFilms: [],
+  error: {
+    message: '',
+    detail: ''
+  },
+  failedFetch: false,
+  fetchingFilms: false,
+  items: JSON.parse(JSON.stringify(characters)).characters,
 }
 
 function charactersReducer(state = initialState, action) {
@@ -37,6 +44,14 @@ function charactersReducer(state = initialState, action) {
           }
         ]
       }
+    case CLEAR_ERROR: 
+      return {
+        ...state,
+        error: {
+          message: '',
+          detail: ''
+        }
+      }
     case CLEAR_FILMS:
       return {
         ...state,
@@ -47,9 +62,20 @@ function charactersReducer(state = initialState, action) {
         ...state,
         currentCharacter: action.payload
       }
+    case FETCHING_FILMS:
+      return {
+        ...state,
+        fetchingFilms: action.payload
+      }
     case HANDLE_FETCH_CHARACTER_FAILURE:
-      console.log('FAILED FETCH', action.payload)
-      return state
+      return {
+        ...state,
+        currentCharacter: {},
+        error: {
+          message: action.payload.message,
+          detail: action.payload.response.detail
+        }
+      }
     default:
       return state
   }

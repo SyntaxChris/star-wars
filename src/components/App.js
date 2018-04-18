@@ -31,22 +31,22 @@ class App extends Component {
     }
   }
 
-  // componentWillMount () {
-  //   this.state.sound.play()
-  // }
+  componentWillMount () {
+    this.state.sound.play()
+  }
 
-  // componentDidMount () {
-  //   setTimeout(() => {
-  //     this.setState({ animate: true })
-  //   }, 500)
+  componentDidMount () {
+    setTimeout(() => {
+      this.setState({ animate: true })
+    }, 500)
 
-  //   setTimeout(() => this.state.sound.fade(1.0, 0, 5000), 20000)
-  // }
+    setTimeout(() => this.state.sound.fade(1.0, 0, 5000), 20000)
+  }
 
   render () {
     return <Provider store={store}>
       <div className='star-wars' style={{ height: '100%' }}>
-        <Header animate={true} />
+        <Header animate={this.state.animate} />
         <AppRoutes />
       </div>
     </Provider>

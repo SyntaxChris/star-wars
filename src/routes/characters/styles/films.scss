@@ -6,6 +6,9 @@
   background-color: #000;
   transition: all 0.3s ease-in;
   opacity: 0.8;
+  z-index: 30;
+  overflow: hidden;
+  overflow-y: scroll;
   .close-btn {
     position: absolute;
     z-index: 10;
@@ -16,7 +19,7 @@
     opacity: 0;
     &.expand {
       cursor: pointer;
-      animation: slide 0.3s ease-in 1s;
+      animation: slide 1s ease-out 0.8s;
       animation-fill-mode: forwards;
     }
   }
@@ -29,6 +32,7 @@
     caption {
       font-size: 25px;
       margin: 20px 0;
+      opacity: 0;
     }
     thead {
       margin: 30px 0;
@@ -41,8 +45,12 @@
   &.expand {
     width: 75%;
     table {
-      animation: slide 1s ease-out 0.5s;
+      animation: slide 1s ease-out 0.8s;
       animation-fill-mode: forwards;
+      caption {
+        animation: slide 1s ease-out 0.5s;
+        animation-fill-mode: forwards;
+      }
     }
   }
 }
