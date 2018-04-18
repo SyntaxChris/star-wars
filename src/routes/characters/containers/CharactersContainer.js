@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
 import { clearError, fetchCharacter } from '../../../actions/characters'
-import { withRouter } from 'react-router'
 import React from 'react'
 import CharactersPanel from '../components/CharactersPanel'
 
@@ -14,4 +13,4 @@ const mapStateToProps = state => ({
   fetchingFilms: state.characters.fetchingFilms
 })
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CharactersPanel))
+export default connect(mapStateToProps, mapDispatchToProps)(CharactersPanel)
