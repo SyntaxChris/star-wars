@@ -1,5 +1,5 @@
 # Star Wars Client
-Frontend integration for the (https://swapi.co/ "Star Wars API")
+Frontend integration for the Star Wars API: https://swapi.co/
 
 ## Development:
 - yarn dev
