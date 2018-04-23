@@ -40,6 +40,7 @@ class Films extends Component {
       currentFilms,
       fetchingFilms
     } = this.props
+    // order films by release date -> earliest to latest
     const orderedFilms = currentFilms
       .sort((a, b) => moment(a.release_date) - moment(b.release_date))
 

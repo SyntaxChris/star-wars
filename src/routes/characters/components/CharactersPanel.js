@@ -14,7 +14,10 @@ const CharactersPanel = ({
   fetchCharacter,
   fetchingFilms
 }) => <section className='characters-panel'> 
-  {fetchingFilms ? <TableLoader /> : null}
+
+  {/* show table loader while fetching films for current character */
+    fetchingFilms ? <TableLoader /> : null}
+
   {characters.map((character, i) => <Character
     key={i.toString()}
     character={character}
@@ -22,7 +25,8 @@ const CharactersPanel = ({
     fetchCharacter={fetchCharacter}
   />)}
   <Films />
-  {error.message
+  {/* show error modal if error message exists */
+    error.message
     ? <ErrorModal
       clearError={clearError}
       detail={error.detail}
