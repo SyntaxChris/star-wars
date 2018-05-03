@@ -10,10 +10,10 @@ import '../styles/application.scss'
 const store = configureStore()
 
 // top level routes
-const AppRoutes = () => <BrowserRouter>
+const AppRoutes = ({ animate }) => <BrowserRouter>
   <Switch>
-    <Route path='/' component={CharactersRoute} />
-    <Route path='*' component={CharactersRoute} />
+    <Route path='/' render={()=> <CharactersRoute animate={animate} />} />
+    <Route path='*' render={()=> <CharactersRoute animate={animate} />}/>
   </Switch>
 </BrowserRouter>
 
@@ -27,28 +27,34 @@ class App extends Component {
         src: [
           'https://ia801703.us.archive.org/15/items/StarWarsThemeSongByJohnWilliams/Star%20Wars%20Theme%20Song%20By%20John%20Williams.mp3'
         ]
-      })
+      }),
+      intervalId: setInterval(() => this.soundCheck(), 500)
     }
   }
 
   componentWillMount () {
     // initiate theme song
     this.state.sound.play()
+    // check if sound has downloaded and is playing
+    this.soundCheck()
   }
 
-  componentDidMount () {
-    setTimeout(() => {
-      this.setState({ animate: true })
-    }, 500)
-
-    setTimeout(() => this.state.sound.fade(1.0, 0, 5000), 17000) // fade out theme song - you're welcome :)
+  soundCheck () {
+    if (this.state.sound.playing()) {
+      // stop polling for sound playing status
+      clearInterval(this.state.intervalId)
+      // start animation
+      setTimeout(() => this.setState({ animate: true }))
+      // fade out sound after 18 seconds
+      setTimeout(() => this.state.sound.fade(1.0, 0, 5000), 18000)
+    }
   }
 
   render () {
     return <Provider store={store}>
       <div className='star-wars' style={{ height: '100%' }}>
         <Header animate={this.state.animate} />
-        <AppRoutes />
+        <AppRoutes animate={this.state.animate} />
       </div>
     </Provider>
   }

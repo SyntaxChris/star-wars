@@ -7,13 +7,14 @@ import TableLoader from './TableLoader'
 import '../styles/characters.scss'
 
 const CharactersPanel = ({
+  animate,
   clearError,
   characters,
   currentCharacter,
   error,
   fetchCharacter,
   fetchingFilms
-}) => <section className='characters-panel'> 
+}) => <section className={`characters-panel${animate ? ' animate' : ''}`}> 
 
   {/* show table loader while fetching films for current character */
     fetchingFilms ? <TableLoader /> : null}
