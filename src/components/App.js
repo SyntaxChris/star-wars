@@ -44,7 +44,7 @@ class App extends Component {
       // stop polling for sound playing status
       clearInterval(this.state.intervalId)
       // start animation
-      setTimeout(() => this.setState({ animate: true }))
+      this.setState({ animate: true })
       // fade out sound after 18 seconds
       setTimeout(() => this.state.sound.fade(1.0, 0, 5000), 18000)
     }

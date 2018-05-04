@@ -1,4 +1,3 @@
-import { Howl } from 'howler'
 import React, { Component } from 'react'
 import StarWarsIcon from './StarWarsIcon'
 import '../styles/header'
